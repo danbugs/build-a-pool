@@ -1,6 +1,14 @@
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
@@ -78,20 +86,30 @@
         padding: 0;
         margin: 10px;
       }
-      li {
+      .firstlist {
         font-family: sans-serif;
         background-color: gold;
         float: left;
-        clear: both;
-        padding: 5px;
+        width: 50%;
+        
+       
+        list-style-type: none;
+        margin: 10px;
+        border-radius: 5px;
+      }
+      .secondlist{
+        font-family: sans-serif;
+        background-color: gold;
+        float: right;
+        width: 50%;
+        
+       
         list-style-type: none;
         margin: 10px;
         border-radius: 5px;
       }
       .close{
-          position:absolute;
-          right:0;
-          top: 0;
+            float:right;
           padding:12px 16px 12px 16px;
       }
       .close:hover {
@@ -109,10 +127,14 @@
       <input type="text" id="myInput" placeholder="Profs..." />
       <span onClick="newElement()" class="addBtn">Add Prof</span>
     </div>
-    <ul id="profs">
-    
+    <ul class="list-group" id="profs">
+    <li class="secondlist">
+        Ramon Lawrence %
+
+    </li>
     </ul>
     <script>
+        //references: https://www.w3schools.com/howto/howto_js_todolist.asp
       //add a score to each list item from the data base
       var myNodelist = document.getElementsByTagName("LI");
       var i;
@@ -123,7 +145,7 @@
         span.appendChild(txt);
         myNodelist[i].appendChild(span);
       }
-//click function
+//click function to send to ratemyprof profile page
       var close = document.getElementsByClassName("close");
       var i;
       for(i = 0; i< close.length; i++){
