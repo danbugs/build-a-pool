@@ -46,7 +46,11 @@ def scrape_prof(url):
     #page header titles
     prof = sp.find(class_="NameTitle__Name-dowf0z-0").text
     dep = sp.find(class_="NameTitle__Title-dowf0z-1").find('b').text
-    print(f"PROF: {prof} DEP: {dep}")    
+    print(f"PROF: {prof} DEP: {dep}")
+
+    prof_data = {}
+    prof_data["url"] = url
+    prof_data["department"] = dep    
 
     #sanity school check
     page_school = sp.find(class_="NameTitle__Title-dowf0z-1").find('a', href=True).text
@@ -78,13 +82,15 @@ def scrape_prof(url):
         score = score.contents[1]
         
         course_scores[course] = int(course_scores[course]) + RATING_RANK[score]
-        print(f"parse value: {course} {quality} {diff} {score}")
+        print(f"parse: {course} {quality} {diff} {score}")
 
     for key, value in course_scores.items():
         print(f"{key} {value}")
 
-    with open('data.txt', 'w') as outfile:
-        json.dump(data, outfile)
+    filename = "COSC.json"
+    with open(filename, 'w') as outfile:
+        json.dump({prof: prof_data}, outfile, ensure_ascii=False, indent=4)
+        json.dump({'courses': course_scores}, outfile, ensure_ascii=False, indent=4)
 
 if __name__ == "__main__":
 
