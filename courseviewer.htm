@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Course Viewer Page BC Hacks 2020</title>
+    <style>
+        body{
+            margin:0;
+            min-width: 250px;
+        }
+        *{
+            box-sizing:border-box;
+        }
+        ul{
+            margin:0;
+            padding:0;
+        }
+        ul li {
+            cursor: pointer;
+            position: relative;
+            padding: 12px 8px 12px 40px;
+            list-style-type: none;
+            background: #eee;
+            font-size: 18px;
+            transition: 0.2s;
+
+
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+
+        }
+        ul li:nth-child(odd){
+            background: #f9f9f9;
+        }
+        ul li:hover {
+            background: #ddd;
+        }
+        ul li.checked{
+            background: #888;
+            color: #fff;
+            text-decoration: line-through;
+
+        }
+        input{
+            margin:0;
+            border: none;
+            border-radius:0;
+            width: 75%;
+            padding: 10px;
+            float:left;
+            font-size: 16px;
+        }
+        .addBtn{
+        padding:10px;
+        width:25%;
+        background:#d9d9d9;
+        color: #555;
+        float: left;
+        text-align: center;
+        font-size: 16px;
+        cursor: pointer;
+        transition: 0.3s;
+        border-radius: 0;
+        }
+        .addBtn:hover{
+            background-color: #bbb;
+        }
+
+
+        h1{
+            font-family: sans-serif;
+            font-size: 32px;
+            color: #CCC;
+            padding: 5px;
+            margin: 5px;
+
+        }
+        ul{
+            padding:0;
+            margin:10px;
+
+        }
+    li{
+        font-family: sans-serif;
+        background-color:gold;
+        float:left;
+        clear: both;
+        padding: 5px;
+        list-style-type: none;
+        margin: 10px;
+        border-radius: 5px;
+
+    }
+    </style>
+</head>
+<body>
+    <h1>COSC 341</h1>
+    <h2>Course Professors</h2>
+    <div id="myDIV" class="header">
+    <input type = "text" id="myInput" placeholder="Profs...">
+    <span onClick="newElement()" class="addBtn">Add Prof</span>
+</div>
+    <ul id="profs">
+        <li>Yves Lucet</li>
+        <li>Ramon Lawrence</li>
+        
+        
+    </ul>
+<script>
+    function newElement(){
+        var li = document.createElement("li");
+        var inputValue = document.getElementById("myInput").value;
+        var t = document.createTextNode(inputValue);
+        li.appendChild(t);
+        document.getElementById("profs").appendChild(li);
+        document.getElementById("myInput").value = "";
+    
+    
+        
+    }
+</script>
+
+</body>
+</html>
