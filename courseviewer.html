@@ -136,15 +136,13 @@
         var jason;
         var currentCourse;
         var courseScore;
-        function order(){
-          
-        }
+    
         function init(){
             currentCourse = "COSC123";
             
            // currentCode = currentCourse.replace(/['"]+/g, '');
             courseScore = 0;
-            $.getJSON("COSC.json", function(json){
+            $.getJSON("COSCPROFS.json", function(json){
                 jason = json;
                 for(var i = 0; i < jason.length; i++){
                     var obj = jason[i];
@@ -154,6 +152,7 @@
                        
                         
                         courseScore = courses[0][currentCourse];
+                        var result = courseScore + 30;
                         console.log(courseScore);
                                 //add the professor's name to the first side of the row
                            var li = document.createElement("li");
