@@ -1,0 +1,28 @@
+a{
+  color:white;
+}
+.container{
+  width: 100%;
+  height: auto;
+}
+.navbar{
+  width: 100%;
+  height:60px;
+  background-color: #000080;
+  bottom: 0;
+  position: absolute;
+}
+.navbar ul{
+  margin-left: 100px;
+}
+.navbar ul li{
+  display: inline;
+  line-height: normal;
+}
+a:hover {
+  color: grey;
+}
+
+li{
+  color:grey;
+}
