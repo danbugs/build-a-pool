@@ -6,14 +6,20 @@ Handlebars.registerHelper('ifObject', function(item, options) {
     }
     });
 
-Handlebars.registerHelper('getObjectName', function(object, key) {
-    return Object.getOwnPropertyNames(object)[key];
+Handlebars.registerHelper('getObjectName', function(object) {
+    return Object.getOwnPropertyNames(object);
     });   
+
+Handlebars.registerHelper('getObject', function(object) {
+        return JSON.stringify(object);
+        }); 
+
+
 
 fetch('data.json')
     .then(response => response.json())
     .then(json => {
-        var element = $("#courses").html();
-        var template = Handlebars.compile(element);
-        $("#courses_placeholder").html(template(json));
+        var main = Handlebars.compile($("#main").html());
+        Handlebars.registerPartial("courses", $("#courses").html());
+        $("body").append(main(json));
     });

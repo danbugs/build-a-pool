@@ -11,25 +11,34 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">        <script src="tree.js"></script>
     </head>
     <body>
-        <div id="courses_placeholder"></div>
-        <script id="courses" type="text/x-handlebars-template">
+        <script id="main" type="text/x-handlebars-template">
             <ul>
                 {{#course}}
-                    <li>{{id}}</li>
-                    <ul>{{#preq}}
-                        {{#ifObject this}}
-                        <li>{{getObjectName this @key}}</li>
-                        <ul>{{#OR}}
-                            <li>{{this}}</li>
-                            {{/OR}}
-                        </ul>
-                        {{else}}
-                        <li>{{this}}</li>
-                        {{/ifObject}}
-                    {{/preq}}
+                    <li id="{{id}}">{{id}}</li>
+                    {{#preq}}
+                    <ul>
+                        {{> courses}}
                     </ul>
+                    {{/preq}}
                 {{/course}}
             </ol>
+        </script>
+        <script id="courses" type="text/x-handlebars-template">
+                {{#ifObject this}}
+                <li id="{{getObjectName this}}">{{getObjectName this}}</li>
+                {{#OR}}
+                <ul>
+                    {{> courses}}
+                </ul>
+                {{/OR}}
+                {{#AND}}
+                <ul>
+                    {{> courses}}
+                </ul>
+                {{/AND}}
+                {{else}}
+                <li id="{{this}}">{{this}}</li>
+                {{/ifObject}}
         </script>
     </body>
 </html>
