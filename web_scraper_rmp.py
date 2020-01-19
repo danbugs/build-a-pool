@@ -23,7 +23,7 @@ chrome_options.add_argument('--no-sandbox')
 
 #scrape department to get prof urls
 def scrape_department(url):
-    browser = webdriver.Chrome(chrome_options=chrome_options, service_args=['--verbose', '--log-path=log.log'])
+    browser = webdriver.Chrome("chromedriver.exe", chrome_options=chrome_options, service_args=['--verbose', '--log-path=log.log'])
     browser.get(url)
 
     #enter computer science in dropdown list
@@ -49,7 +49,7 @@ def scrape_department(url):
 
 #load all ratings on rmp page
 def load_rmp_ratings(url):
-    browser = webdriver.Chrome(chrome_options=chrome_options, service_args=['--verbose', '--log-path=log.log'])
+    browser = webdriver.Chrome("chromedriver.exe", chrome_options=chrome_options, service_args=['--verbose', '--log-path=log.log'])
     browser.get(url)
 
     #click load more ratings until button is gone
