@@ -10,6 +10,7 @@ import json
 import time
 
 SCHOOL = "University of British Columbia - Okanagan"
+OUT_FILE = "COSC.json"
 
 RATING_RANK = {
     "awesome": 10,
@@ -43,9 +44,7 @@ def scrape_department(url):
         link = prof.find("a")["href"]
         link = "https://www.ratemyprofessors.com" + link
         url_list.append(link)
-
     return url_list
-
 
 #load all ratings on rmp page
 def load_rmp_ratings(url):
@@ -104,10 +103,10 @@ def scrape_prof(url):
             continue
 
         course = rating.find(class_="RatingHeader__StyledClass-sc-1dlkqw1-2").text
-        #skip course names that dont have cosc and a number
+        #skip course names that dont have explicit cosc and a 3 digit number
         if "COSC" not in course:
             continue
-        elif len(re.sub("\d+", "", course)) > 4:
+        elif len(re.sub("\d+", "", course)) > len("COSC"):
             continue
         elif int(''.join(filter(str.isdigit, course))) > 999 :
             continue
@@ -115,7 +114,7 @@ def scrape_prof(url):
         #add course to score dict
         if course not in course_scores.keys():
             course_scores[course] = 0
-
+        
         r = rating.find_all(class_="RatingValues__RatingValue-sc-6dc747-3")
         quality = r[0].text
         diff = r[1].text
@@ -132,8 +131,7 @@ def scrape_prof(url):
     #add score info to prof data    
     prof_data["courses"] = [course_scores]
 
-    filename = "COSC.json"
-    with open(filename, 'a') as outfile:
+    with open(OUT_FILE, 'a') as outfile:
         json.dump(prof_data, outfile, ensure_ascii=False, indent=4) #{prof: prof_data}
 
 if __name__ == "__main__":
@@ -141,20 +139,20 @@ if __name__ == "__main__":
     #Xvfb is required with PyVirtualDisplay
 
     #clear json file before write up
-    with open('COSC.json','w'): pass
+    with open(OUT_FILE,'w'): pass
 
-    #initial cosc department url
+    #initial UBCO view all prof per department url
     url = "https://www.ratemyprofessors.com/search.jsp?queryBy=schoolId&schoolName=University+of+British+Columbia+-+Okanagan&schoolID=5436&queryoption=TEACHER"
-
+    
     prof_urls = scrape_department(url)
     for prof_url in prof_urls:
         scrape_prof(prof_url)
 
     #turn entire json  object as array
     data = ""
-    with open('COSC.json','r') as file:
+    with open(OUT_FILE,'r') as file:
         data = file.read()
-    with open('COSC.json','w') as file:
+    with open(OUT_FILE,'w') as file:
         file.write(f"[{data}]")
 
     #url = "https://www.ratemyprofessors.com/ShowRatings.jsp?tid=1918500&showMyProfs=true"
