@@ -4,6 +4,7 @@ from selenium import webdriver
 from selenium.webdriver import ActionChains
 from selenium.webdriver.support.ui import WebDriverWait
 import json
+import time
 
 
 '''
@@ -29,7 +30,7 @@ def load_rmp_ratings(url):
     browser.get(url)
     wait = WebDriverWait(browser, 5)
 
-    #return browser.page_source
+    return browser.page_source
     while True:
         try:
             actions = ActionChains(browser)
@@ -38,7 +39,8 @@ def load_rmp_ratings(url):
                 if e.text == "Load More Ratings":
                     if e.is_enabled():
                         actions.move_to_element(e).click().perform()
-                        browser.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+                        browser.execute_script("arguments[0].scrollIntoView();", e)
+                        time.sleep(2)
 
             print("clicked button")
         except Exception as e:
@@ -96,14 +98,17 @@ def scrape_prof(url):
         
         course_scores[course] = int(course_scores[course]) + RATING_RANK[score]
         print(f"parse: {course} {quality} {diff} {score}")
-
+   
     for key, value in course_scores.items():
         print(f"{key} {value}")
+
+    #add score info to prof data    
+    prof_data["courses"] = [course_scores]
 
     filename = "COSC.json"
     with open(filename, 'w') as outfile:
         json.dump({prof: prof_data}, outfile, ensure_ascii=False, indent=4)
-        json.dump({'courses': course_scores}, outfile, ensure_ascii=False, indent=4)
+        #json.dump({'courses': course_scores}, outfile, ensure_ascii=False, indent=4)
 
 if __name__ == "__main__":
 
