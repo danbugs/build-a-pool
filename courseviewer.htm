@@ -86,6 +86,7 @@
         padding: 0;
         margin: 10px;
       }
+      ul li
       .firstlist {
         font-family: sans-serif;
         background-color: gold;
@@ -127,34 +128,18 @@
       <input type="text" id="myInput" placeholder="Profs..." />
       <span onClick="newElement()" class="addBtn">Add Prof</span>
     </div>
-    <ul class="list-group" id="profs">
-    <li class="secondlist">
-        Ramon Lawrence %
+    <ul  id="profs">
+   
 
     </li>
     </ul>
     <script>
         //references: https://www.w3schools.com/howto/howto_js_todolist.asp
-      //add a score to each list item from the data base
-      var myNodelist = document.getElementsByTagName("LI");
-      var i;
-      for (i = 0; i < myNodelist.length; i++) {
-        var span = document.createElement("SPAN");
-        var txt = document.createTextNode("\u00D7");
-        span.className = "score";
-        span.appendChild(txt);
-        myNodelist[i].appendChild(span);
-      }
-//click function to send to ratemyprof profile page
-      var close = document.getElementsByClassName("close");
-      var i;
-      for(i = 0; i< close.length; i++){
-          close[i].onClick = function() {
-            window.open("https://www.ratemyprofessors.com/AddRating.jsp?tid=884355");
-          }
-      }
+
+      //adds a new prof (and soon score) to the list
       function newElement() {
         var li = document.createElement("li");
+       
         var inputValue = document.getElementById("myInput").value;
         var t = document.createTextNode(inputValue);
         li.appendChild(t);
