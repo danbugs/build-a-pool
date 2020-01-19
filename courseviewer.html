@@ -139,7 +139,7 @@
                 //filereader implementation from https://stackoverflow.com/questions/7346563/loading-local-json-file
                 //using file reader
 
-                //delete children
+                //parse through each prof array item
                 var div = document.getElementById("profs")
                 while (div.firstChild) {
                   div.removeChild(div.firstChild);
@@ -198,7 +198,7 @@
                     avgsent = totalsent/count;
                     console.log(avgsent);
                   
-                    if(avgsent >0){//if the score is negative
+                    if(avgsent >0){//if the score is positive
                     
                       
                       confetti.start();
