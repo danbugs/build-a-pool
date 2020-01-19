@@ -117,12 +117,12 @@
 
     </style>
   </head>
-  <body>
+  <body >
     <h1>Course Professors</h1>
     
     <div id="myDIV" class="header">
-      <input type="text" id="myInput" placeholder="Profs..." />
-      <span onClick="init()" class="addBtn">INITIALIZE LOOPS</span>
+     
+   
     </div>
     <ul  id="profs">
         <li>
@@ -137,13 +137,17 @@
         var currentCourse;
         var courseScore;
         var sentiment;
-        function init(){
+        window.onload = function(){
             currentCourse = "COSC123";
             
-         
+            
             courseScore = 0;
-            $.getJSON("COSCPROFS.json", function(json){
+            $.getJSON("https://danbugs.github.io/bchacks2020/COSCPROFS.json", function(json){
                 jason = json;
+                console.log(jason);
+                //filereader implementation from https://stackoverflow.com/questions/7346563/loading-local-json-file
+                //using file reader
+
                 for(var i = 0; i < jason.length; i++){
                     var obj = jason[i];
                     var courses = jason[i].courses;
@@ -152,6 +156,7 @@
                        
                         
                         courseScore = courses[0][currentCourse];
+                          console.log(courseScore);
                            //the course score is an int
                            if(courseScore < -50){
                             sentiment = "Would write a review purely to insult them"
@@ -177,7 +182,7 @@
                            var t = document.createTextNode(inputValue);
                            li.appendChild(t);
                            document.getElementById("profs").appendChild(li);
-                           document.getElementById("myInput").value = "";
+                           
                            //add the professor's score for the course on the other side
                            var li = document.createElement("li");
                            li.setAttribute("class", "secondlist");
@@ -185,15 +190,16 @@
                            var t = document.createTextNode(inputValue);
                            li.appendChild(t);
                            document.getElementById("profs").appendChild(li);
-                           document.getElementById("myInput").value = "";
+                          
                         
        
                     }}
-            }); 
+         
         
             
+            });
+            }
         
-        }
          
 
  
