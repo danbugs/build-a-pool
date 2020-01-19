@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Course Tree</title>
+        <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+            crossorigin="anonymous">
+        </script>
+        
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">        
+
+        <script src="data.js"></script>
+        <script src="helpers.js"></script>
+    </head>
+    <body>
+        <script id="main" type="text/x-handlebars-template">
+            <ul>
+                {{#course}}
+                    <li id="{{id}}">{{id}}</li>
+                    {{#preq}}
+                    <ul>
+                        {{> courses}}
+                    </ul>
+                    {{/preq}}
+                {{/course}}
+            </ol>
+        </script>
+        <script id="courses" type="text/x-handlebars-template">
+                {{#ifObject this}}
+                <li id="{{getObjectName this}}">{{getObjectName this}}</li>
+                {{#OR}}
+                <ul>
+                    {{> courses}}
+                </ul>
+                {{/OR}}
+                {{#AND}}
+                <ul>
+                    {{> courses}}
+                </ul>
+                {{/AND}}
+                {{else}}
+                <li id="{{this}}">{{this}}</li>
+                {{/ifObject}}
+        </script>
+    </body>
+</html>

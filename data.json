@@ -1,0 +1,44 @@
+{
+    "course": [
+        {
+            "id": "COURSE1",
+            "preq": [],
+            "creq": []
+        }, 
+        {
+            "id": "COURSE2",
+            "preq": [
+                "COURSE1"            
+            ],
+            "creq": [
+                "COURSE3"
+            ]
+        }, 
+        {
+            "id": "COURSE3",
+            "preq": [
+                "COURSE1"            
+            ],
+            "creq": [
+                "COURSE2"
+            ]
+        },
+        {
+            "id": "COURSE4",
+            "preq": [
+                {
+                    "AND": [
+                        {
+                            "OR":["A", "B"]
+                        },
+                        {
+                            "OR":["C", "D"]
+                        }
+                    ]
+                },
+                "COURSE1"  
+            ],
+            "creq": []            
+        }
+    ]
+}
