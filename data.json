@@ -8,7 +8,7 @@
         {
             "id": "COURSE2",
             "preq": [
-                "70 COURSE1"            
+                "COURSE1"            
             ],
             "creq": [
                 "COURSE3"
@@ -17,7 +17,7 @@
         {
             "id": "COURSE3",
             "preq": [
-                "70 COURSE1"            
+                "COURSE1"            
             ],
             "creq": [
                 "COURSE2"
@@ -36,7 +36,7 @@
                         }
                     ]
                 },
-                "70 COURSE1"  
+                "COURSE1"  
             ],
             "creq": []            
         }
