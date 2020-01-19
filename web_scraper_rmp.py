@@ -1,6 +1,8 @@
 from bs4 import BeautifulSoup
 import requests
 from selenium import webdriver
+from selenium.webdriver import ActionChains
+from selenium.webdriver.support.ui import WebDriverWait
 import json
 
 
@@ -25,18 +27,26 @@ def scrap_department(url):
 def load_rmp_ratings(url):
     browser = webdriver.Chrome()
     browser.get(url)
-    return browser.page_source
+    wait = WebDriverWait(browser, 5)
 
+    #return browser.page_source
     while True:
         try:
-            el = browser.find_element_by_id("react-tabs-3923809")
-            el.find_element_by_class_name("Buttons__Button-sc-19xdot-0").click()
-            print("clicked button")
-        except:
-            print("all prof ratings loaded")
-            browser.close()
-            return browser.page_source
+            actions = ActionChains(browser)
+            el = browser.find_elements_by_class_name("Buttons__Button-sc-19xdot-0")
+            for e in el:
+                if e.text == "Load More Ratings":
+                    if e.is_enabled():
+                        actions.move_to_element(e).click().perform()
+                        browser.execute_script("window.scrollTo(0, document.body.scrollHeight);")
 
+            print("clicked button")
+        except Exception as e:
+            print(e)
+            print("all prof ratings loaded")
+            source = browser.page_source
+            browser.close()
+            return source
 
 #scrape prof page to get course ratings 
 def scrape_prof(url):
@@ -69,6 +79,9 @@ def scrape_prof(url):
             continue
 
         course = rating.find(class_="RatingHeader__StyledClass-sc-1dlkqw1-2").text
+        #skip course names that are long
+        if int(''.join(filter(str.isdigit, course))) > 999 or "COSC" not in course:
+            continue
 
         #add course to score dict
         if course not in course_scores.keys():
