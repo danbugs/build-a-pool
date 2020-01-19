@@ -2,7 +2,8 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    
+    <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/moqmar/weather.css/master/weather.min.css">
+
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
@@ -118,7 +119,8 @@
     </style>
   </head>
   <body >
-   <script src="https://cdn.jsdelivr.net/gh/mathusummut/confetti.js/confetti.min.js"></script><script>confetti.start()</script>
+  <div class="weather rain"></div>
+   <script src="https://cdn.jsdelivr.net/gh/mathusummut/confetti.js/confetti.min.js"></script>
     <h1>Course Professors</h1>
     
     <div id="myDIV" class="header">
@@ -138,6 +140,9 @@
         var currentCourse;
         var courseScore;
         var sentiment;
+        var totalsent;
+        var count = 0;
+        var avgsent;
         window.onload = function(){
             currentCourse = "COSC123";
             
@@ -157,6 +162,9 @@
                        
                         
                         courseScore = courses[0][currentCourse];
+                          count++;
+                          totalsent += courseScore;
+
                           console.log(courseScore);
                            //the course score is an int
                            if(courseScore < -50){
@@ -195,6 +203,17 @@
                         
        
                     }}
+                    avgsent = totalsent/count;
+                    if(avgsent < 0){
+                    var booSound = new Audio('boosound.wav');
+                    booSound.loop = false;
+                    booSound.play();
+                    }else{
+                      confetti.start();
+                      var cheerSound = new Audio('cheersound.wav');
+                    cheerSound.loop = false;
+                    cheerSound.play();
+                    }
          
         
             
