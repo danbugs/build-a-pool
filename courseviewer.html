@@ -195,14 +195,17 @@
                         
        
                     }}
+                    //below is the calculation of the average score considering all parsed weights from the json file
                     avgsent = totalsent/count;
                     console.log(avgsent);
-                    if(avgsent < 0){
-                    console.log("UH OH");
+                  
+                    if(avgsent < 0){//if the score is negative
+                      confetti.stop;
                       
                     document.getElementById("weather").setAttribute("class", "weather rain");
                  
-                    }else{
+                    }else{//if the score is positive
+                       document.getElementById("weather").setAttribute("class", "weather not rain");
                       confetti.start();
                      
                     }
