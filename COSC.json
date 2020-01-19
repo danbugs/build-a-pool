@@ -4,12 +4,13 @@
         "department": "Computer Science department",
         "courses": [
             {
-                "COSC123": 20,
-                "COSC111": 70,
-                "COSC121": 10,
-                "COSC445": 10,
-                "COSC211": 40,
-                "COSC122": 10
+                "COSC123": 30,
+                "COSC111": 260,
+                "COSC121": 40,
+                "COSC445": 20,
+                "COSC211": 90,
+                "COSC122": 80,
+                "COSC304": 10
             }
         ]
     }

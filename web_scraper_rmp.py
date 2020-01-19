@@ -7,11 +7,6 @@ import json
 import time
 
 
-'''
-    get prof url
-    scrape data from page, course, ratings for course
-    intended format, db, json etc
-'''
 SCHOOL = "University of British Columbia - Okanagan"
 
 RATING_RANK = {
@@ -21,7 +16,7 @@ RATING_RANK = {
     }
 
 #scrape department to get prof urls
-def scrap_department(url):
+def scrape_department(url):
     print("blah-blah")
 
 #load all ratings on rmp page
@@ -30,22 +25,19 @@ def load_rmp_ratings(url):
     browser.get(url)
     wait = WebDriverWait(browser, 5)
 
-    return browser.page_source
     while True:
         try:
             actions = ActionChains(browser)
-            el = browser.find_elements_by_class_name("Buttons__Button-sc-19xdot-0")
-            for e in el:
-                if e.text == "Load More Ratings":
-                    if e.is_enabled():
-                        actions.move_to_element(e).click().perform()
-                        browser.execute_script("arguments[0].scrollIntoView();", e)
-                        time.sleep(2)
+            #el = browser.find_elements_by_class_name("Buttons__Button-sc-19xdot-0")
+            el = browser.find_element_by_xpath("/html/body/div[1]/div/div/div[2]/div[4]/div/div[1]/button")
+            #actions.move_to_element(el).perform().click()
+            el.send_keys("\n")
+            time.sleep(3)
 
-            print("clicked button")
+            print("Clicked button")
         except Exception as e:
             print(e)
-            print("all prof ratings loaded")
+            print("all ratings for prof loaded")
             source = browser.page_source
             browser.close()
             return source
@@ -82,7 +74,9 @@ def scrape_prof(url):
 
         course = rating.find(class_="RatingHeader__StyledClass-sc-1dlkqw1-2").text
         #skip course names that are long
-        if int(''.join(filter(str.isdigit, course))) > 999 or "COSC" not in course:
+        if "COSC" not in course:
+            continue
+        elif int(''.join(filter(str.isdigit, course))) > 999 :
             continue
 
         #add course to score dict
