@@ -1,6 +1,6 @@
 
 {
-    "Abdallah Mohamed": {
+        "name": "abdallah mohammed",
         "url": "https://www.ratemyprofessors.com/ShowRatings.jsp?tid=1918500&showMyProfs=true",
         "department": "Computer Science department",  
         "courses": [{
@@ -14,4 +14,3 @@
         ]
     }
   
-}
