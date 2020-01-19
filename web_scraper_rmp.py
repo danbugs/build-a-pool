@@ -6,10 +6,8 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.keys import Keys
 import re
 
-
 import json
 import time
-
 
 SCHOOL = "University of British Columbia - Okanagan"
 
@@ -19,9 +17,13 @@ RATING_RANK = {
     "average": 0
     }
 
+chrome_options = webdriver.ChromeOptions()
+chrome_options.add_argument('--headless')
+chrome_options.add_argument('--no-sandbox')
+
 #scrape department to get prof urls
 def scrape_department(url):
-    browser = webdriver.Chrome()
+    browser = webdriver.Chrome(chrome_options=chrome_options, service_args=['--verbose', '--log-path=log.log'])
     browser.get(url)
 
     #enter computer science in dropdown list
@@ -47,7 +49,7 @@ def scrape_department(url):
 
 #load all ratings on rmp page
 def load_rmp_ratings(url):
-    browser = webdriver.Chrome()
+    browser = webdriver.Chrome(chrome_options=chrome_options, service_args=['--verbose', '--log-path=log.log'])
     browser.get(url)
 
     #click load more ratings until button is gone
@@ -59,10 +61,10 @@ def load_rmp_ratings(url):
             el.send_keys("\n")
             time.sleep(3)
 
-            print("Clicked button")
+            print("Clicked: Load more ratings")
         except Exception as e:
             print(e)
-            print("all ratings for prof loaded")
+            print("All professor ratings loaded")
             source = browser.page_source
             browser.close()
             return source
@@ -75,7 +77,7 @@ def scrape_prof(url):
     #page header titles
     prof = sp.find(class_="NameTitle__Name-dowf0z-0").text
     dep = sp.find(class_="NameTitle__Title-dowf0z-1").find('b').text
-    print(f"PROF: {prof} DEP: {dep}")
+    print(f"PROFESSOR: {prof} DEPARTMENT: {dep}")
 
     prof_data = {}
     prof_data["name"] = prof
@@ -134,12 +136,25 @@ def scrape_prof(url):
 
 if __name__ == "__main__":
 
+    #for headless operation
+    #Xvfb is required with PyVirtualDisplay
+
+    #clear json file
+    with open('COSC.json','w'): pass
+
     #initial cosc department url
     url = "https://www.ratemyprofessors.com/search.jsp?queryBy=schoolId&schoolName=University+of+British+Columbia+-+Okanagan&schoolID=5436&queryoption=TEACHER"
 
     prof_urls = scrape_department(url)
     for prof_url in prof_urls:
         scrape_prof(prof_url)
+
+    #write json as array
+    data = ""
+    with open('COSC.json','r') as file:
+        data = file.read()
+    with open('COSC.json','w') as file:
+        file.write(f"[{data}]")
 
     #TODO find url of all professors for section, store url
     #url = "https://www.ratemyprofessors.com/ShowRatings.jsp?tid=1918500&showMyProfs=true"
