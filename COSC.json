@@ -1,32 +1,171 @@
-[
-  {
-    "name": "abdallah mohammed",
+[{
+    "name": "Abdallah Mohamed",
     "url": "https://www.ratemyprofessors.com/ShowRatings.jsp?tid=1918500&showMyProfs=true",
     "department": "Computer Science department",
+    "comment": "What a great prof. Gives good feedback and really wants to see his students succeed. Attend class, listen, and you'll do fine.",
     "courses": [
-      {
-        "COSC123": 30,
-        "COSC111": 140,
-        "COSC121": 10,
-        "COSC445": 10,
-        "COSC211": 50,
-        "COSC122": 20
-      }
+        {
+            "COSC123": 30,
+            "COSC111": 260,
+            "COSC121": 40,
+            "COSC445": 20,
+            "COSC211": 90,
+            "COSC122": 80,
+            "COSC304": 10
+        }
     ]
-  },
-  {
-    "name": "yves lucet",
-    "url": "https://www.ratemyprofessors.com/ShowRatings.jsp?tid=1918500&showMyProfs=true",
+},{
+    "name": "Ramon Lawrence",
+    "url": "https://www.ratemyprofessors.com/ShowRatings.jsp?tid=884355&showMyProfs=true",
     "department": "Computer Science department",
+    "comment": "Ramon is by far the best professor I've had at UBCO.  The only lectures where I actually leave having learnt everything taught. He is clearly a master of his field. You can really tell that he is not lazy when designing lessons and he makes everything count. I would pay double tuition to have Ramon teach all of my computer science classes.",
     "courses": [
-      {
-        "COSC123": 30,
-        "COSC111": 140,
-        "COSC121": 10,
-        "COSC445": 10,
-        "COSC211": 50,
-        "COSC122": 20
-      }
+        {
+            "COSC304": 180,
+            "COSC404": 50,
+            "COSC301": 10,
+            "COSC122": 210,
+            "COSC111": 10
+        }
     ]
-  }
-]
+},{
+    "name": "Yves Lucet",
+    "url": "https://www.ratemyprofessors.com/ShowRatings.jsp?tid=654931&showMyProfs=true",
+    "department": "Computer Science department",
+    "comment": "The actual divine god bestowed upon this world to bring the teachings of Data Structures to students at UBCO. This one man has the power of god and anime on his side in teaching the most important computer science course. Expect to be rasterized into a group hivemind of problem solvers for improbable issues. I wish you luck on the adventure of 222.",
+    "courses": [
+        {
+            "COSC222": 30,
+            "COSC223": -10,
+            "COSC406": 20,
+            "COSC303": -10,
+            "COSC225": -10,
+            "COSC320": -40,
+            "COSC221": -10
+        }
+    ]
+},{
+    "name": "Irene Vrbik",
+    "url": "https://www.ratemyprofessors.com/ShowRatings.jsp?tid=2407086&showMyProfs=true",
+    "department": "Computer Science department",
+    "comment": "Great prof if you really do your work.",
+    "courses": [
+        {
+            "COSC301": -20
+        }
+    ]
+},{
+    "name": "James YU",
+    "url": "https://www.ratemyprofessors.com/ShowRatings.jsp?tid=1910945&showMyProfs=true",
+    "department": "Computer Science department",
+    "comment": "Just take his class which is the right thing. He always tried to let student understand what is going on instead of just doing some boring code. And if you have problem, just ask him and he is really willing to help you ok. If you pay attention to his class and  follow his instructions, there is no reason you fail.",
+    "courses": [
+        {
+            "COSC305": 20,
+            "COSC310": 0,
+            "COSC470": -10,
+            "COSC121": 40,
+            "COSC499": 10,
+            "COSC211": 0,
+            "COSC111": 10
+        }
+    ]
+},{
+    "name": "Bowen Hui",
+    "url": "https://www.ratemyprofessors.com/ShowRatings.jsp?tid=1792711&showMyProfs=true",
+    "department": "Computer Science department",
+    "comment": "Favorite professor and class by far for my first year at uni. BOWEN YOU'RE A BROOOOOO.",
+    "courses": [
+        {
+            "COSC111": -10,
+            "COSC341": 0,
+            "COSC442": 10,
+            "COSC101": 0,
+            "COSC121": 0
+        }
+    ]
+},{
+    "name": "Yong Gao",
+    "url": "https://www.ratemyprofessors.com/ShowRatings.jsp?tid=654919&showMyProfs=true",
+    "department": "Computer Science department",
+    "comment": "One of the most considerate and hilarious teachers I've ever had. If you are ever undecided about your major please just take Computer Science so you can attend Gaos classes, nothing will ever compare to the high quality teaching that takes place in COSC320. I learned so much more than just the course material, I learned about myself.",
+    "courses": [
+        {
+            "COSC221": -70,
+            "COSC322": -30,
+            "COSC320": -40,
+            "COSC211": -20,
+            "COSC231": -10,
+            "COSC111": -30
+        }
+    ]
+},{
+    "name": "Patricia Lasserre",
+    "url": "https://www.ratemyprofessors.com/ShowRatings.jsp?tid=654921&showMyProfs=true",
+    "department": "Computer Science department",
+    "comment": "",
+    "courses": [
+        {
+            "COSC341": 20,
+            "COSC121": 0,
+            "COSC111": 40,
+            "COSC459": 10,
+            "COSC1": 10
+        }
+    ]
+},{
+    "name": "Scott Fazackerley",
+    "url": "https://www.ratemyprofessors.com/ShowRatings.jsp?tid=1733627&showMyProfs=true",
+    "department": "Computer Science department",
+    "comment": "Scott will be one of your favourite teachers. His knowledge bank is massive and if you ask him any question related to tech he will most likely have an answer for you. Will help you in class but sometimes will take over if you don't understand something. He has GREAT notes, very structured and is a very fair and helpful teacher. HIGHLY recommend.",
+    "courses": [
+        {
+            "COSC328": 30,
+            "COSC121": 20,
+            "COSC305": 40,
+            "COSC211": 10
+        }
+    ]
+},{
+    "name": "Miles Thorogood",
+    "url": "https://www.ratemyprofessors.com/ShowRatings.jsp?tid=2124170&showMyProfs=true",
+    "department": "Computer Science department",
+    "comment": "I found the course really useful, fun and the prof was helpful.",
+    "courses": [
+        {
+            "COSC150": -10,
+            "COSC114": 20
+        }
+    ]
+},{
+    "name": "Mohammad Hasan",
+    "url": "https://www.ratemyprofessors.com/ShowRatings.jsp?tid=2437430&showMyProfs=true",
+    "department": "Computer Science department",
+    "comment": "Class tended to be more on the 'arts' side, but he's an easy marker, so it's easy to do well. He explains concepts thoroughly in class, sometimes going a bit slow, but I never found him too boring. Only has a slight accent, and he has a bit of a funny side. Overall an enjoyable course, made better by a great, if inexperienced, professor.",
+    "courses": [
+        {
+            "COSC222": -10,
+            "COSC341": 20
+        }
+    ]
+},{
+    "name": "Jocelyn Smith",
+    "url": "https://www.ratemyprofessors.com/ShowRatings.jsp?tid=2173972&showMyProfs=true",
+    "department": "Computer Science department",
+    "comment": "Jocelyn is a perfectly manicured rare steak from an alligator, tough and rigid but a true connoisseur like myself can appreciate it. This is why Jocelyn despite being such an exquisite divine teacher has such a low rating, I truly believe that the ratings are uncalled for as these lower class Luddites don't have a pallet for higher learning.",
+    "courses": [
+        {
+            "COSC341": -40
+        }
+    ]
+},{
+    "name": "Fatemah Hendijani Fard",
+    "url": "https://www.ratemyprofessors.com/ShowRatings.jsp?tid=2551550&showMyProfs=true",
+    "department": "Computer Science department",
+    "comment": "She is a nice person, helpful! Knows what she was teaching! Midterm was a bit difficult but final was manageable! Gives a lot of home-work!",
+    "courses": [
+        {
+            "COSC328": 20
+        }
+    ]
+}]
