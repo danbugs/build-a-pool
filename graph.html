@@ -258,6 +258,15 @@ pre[data-line] .line-highlight[data-end]:after {
 /* Please visit the URL below for more information: */
 /*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
 
+.tooltip {
+    visibility: hidden;
+    position: absolute;
+  }
+
+  .node:hover .tooltip{
+    visibility: visible !important;
+  }
+
       </style>
     </head>
     <body for="html-export">
@@ -440,6 +449,54 @@ if (typeof(window['Reveal']) !== 'undefined') {
 } else {
   mermaid.init(null, document.getElementsByClassName('mermaid'))
 }
+
+var p = document.createElement("iframe");
+  p.setAttribute("src","courseviewer.html")
+  p.setAttribute("width","400px")
+  p.setAttribute("height","400px")
+  p.className = "tooltip"
+
+  mainMermain = document.getElementsByClassName("mermaid")[0];
+  mainMermain.appendChild(p);
+
+  function moveTooltip(event, id) {
+
+    if (!id.includes("COSC")){
+        return
+    }
+
+    var tooltip = document.getElementsByClassName('tooltip')[0]
+    tooltip.style.visibility = "visible";
+    var cont = document.getElementsByClassName("mermaid")[0]
+
+    var frame =  document.getElementsByTagName("iframe")[0]
+    frame.contentWindow.postMessage(id)
+
+    var xPosition = event.clientX - cont.getBoundingClientRect().left - (tooltip.clientWidth / 2);
+    var yPosition = event.clientY - cont.getBoundingClientRect().top - (tooltip.clientHeight / 2);
+    // in case of a wide border, the boarder-width needs to be considered in the formula above
+    tooltip.style.left = (xPosition + 280) + "px";
+    tooltip.style.top = (yPosition + 50) + "px";
+
+
+    setTimeout(function() {
+      tooltip.style.visibility = "hidden";
+    }, 6000);
+  }
+
+  var nodes = document.getElementsByClassName('node');
+  for(var i = 0; i < nodes.length; i++) {
+      var node = nodes[i];
+
+      node.onclick = function(event) {
+        moveTooltip(event, this.id)
+          //alert(this.id);
+      } 
+      node.addEventListener("mouseenter", function( event ) { 
+        moveTooltip(event, this.id)
+      })
+  }
+
 
 </script>
     
