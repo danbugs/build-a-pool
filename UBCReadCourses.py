@@ -176,6 +176,7 @@ filename = "MERMAID.txt"
 with open(filename, 'w') as outfile:
     THE_dict = {}
     orCounter = 0
+    andCounter = 1000
     for index in range(0, len(coursePrereqs)-1):
         current_el = coursePrereqs[index]
         if(len(current_el) > 0):
@@ -185,34 +186,62 @@ with open(filename, 'w') as outfile:
                     orStuff = current_el_text.replace("OR(", "")
                     orStuff = orStuff.replace(" ", "")
                     subAND = orStuff.split(")AND(")
-                    THE_dict[courseIDList[index]]={"id":courseIDList[index],"preq":{"and":{"or1":subAND[0].replace(" ", ""), "or2":subAND[1].replace(" ", "")}}}
+                    subAND[0] = subAND[0].split(",")
+                    subAND[1] = subAND[1].split(",")
+                    for codes in subAND[0]:
+                        outfile.write(((codes.replace(" ", "")).replace(".", ""))+"("+(codes.replace(" ", "")).replace(".", "")+")-->"+str(orCounter)+"{OR}\n")
+                    outfile.write(str(orCounter)+"{OR}-->"+str(andCounter)+"{AND}\n")
+                    orCounter = orCounter + 1
+                    outfile.write(str(orCounter)+"{OR}-->"+str(andCounter)+"{AND}\n")
+                    for codes in subAND[1]:
+                            outfile.write((codes.replace(" ", "")).replace(".", "").replace(")","")+"("+(codes.replace(" ", "")).replace(".", "").replace(")","")+")-->"+str(orCounter)+"{OR}\n")
+                    orCounter = orCounter + 1
+                    outfile.write(str(andCounter)+"{AND}-->"+courseIDList[index].replace(" ", "")+"("+courseIDList[index].replace(" ", "")+")\n")
+                    andCounter = andCounter + 1
+                    THE_dict[courseIDList[index]]={"id":courseIDList[index],"preq":{"and":{"or1":subAND[0], "or2":subAND[1]}}}
                 else:
                     courses_format = current_el_text.replace("OR(", "")
                     courses_format = courses_format.replace(")", "")
                     courses_format = courses_format.replace(" ", "")
                     course_codesOR = courses_format.split(",")
                     for codes in course_codesOR:
-                        print(courseIDList[index] + "for")
                         if(codes.find("\n") < 0):
-                            print(codes)
-                            outfile.write(codes.replace(" ", "")+"--\"or\"-->"+courseIDList[index]+"\n")
+                            outfile.write(codes.replace(" ", "")+"("+codes.replace(" ", "")+")-->"+str(orCounter)+"{OR}\n")
+                    outfile.write(str(orCounter)+"{OR}-->"+courseIDList[index].replace(" ", "")+"("+courseIDList[index].replace(" ", "")+")\n")
+                    orCounter = orCounter + 1
                     THE_dict[courseIDList[index]]={"id":courseIDList[index],"preq":{"or":course_codesOR}}
             elif(current_el_text[0:3] == "AND"):
                 if(current_el_text.find("OR")>0):
                     andStuff = current_el_text.replace("AND(", "")
                     andStuff = andStuff.replace(" ", "")
                     subOR = andStuff.split("OR(")
-                    THE_dict[courseIDList[index]]={"id":courseIDList[index],"preq":{"and":{"and":subOR[0].split(","), "or":subOR[1].split(",")}}}
+                    subOR[0] = subOR[0].split(",")
+                    subOR[1] = subOR[1].split(",")
+                    for codes in subAND[0]:
+                        outfile.write(((codes.replace(" ", "")).replace(".", ""))+"("+(codes.replace(" ", "")).replace(".", "")+")-->"+str(andCounter)+"{AND}\n")
+                    for codes in subAND[1]:
+                        outfile.write((codes.replace(" ", "")).replace(".", "").replace(")","")+"("+(codes.replace(" ", "")).replace(".", "").replace(")","")+")-->"+str(orCounter)+"{OR}\n")
+                    outfile.write(str(orCounter)+"{OR}-->"+courseIDList[index].replace(" ", "")+"("+courseIDList[index].replace(" ", "")+")\n")
+                    outfile.write(str(andCounter)+"{AND}-->"+courseIDList[index].replace(" ", "")+"("+courseIDList[index].replace(" ", "")+")\n")
+                    orCounter = orCounter + 1
+                    andCounter = andCounter + 1
+                    THE_dict[courseIDList[index]]={"id":courseIDList[index],"preq":{"and":{"and":subOR[0], "or":subOR[1]}}}
                 else:
                     courses_format = current_el_text.replace("AND(", "")
                     courses_format = courses_format.replace(")", "")
                     courses_format = courses_format.replace(" ", "")
                     course_codes_AND = courses_format.split(",")
                     for codes in course_codes_AND:
-                            outfile.write(codes.replace(" ", "")+"--\"and\"-->"+courseIDList[index]+"\n")
+                        if(len(course_codes_AND) > 1):
+                            outfile.write((codes.replace(" ", "")).replace(".", "")+"("+(codes.replace(" ", "")).replace(".", "")+")-->"+str(andCounter)+"{AND}\n")
+                    if(len(course_codes_AND) > 1):
+                        outfile.write(str(andCounter)+"{AND}-->"+courseIDList[index].replace(" ", "")+"("+courseIDList[index].replace(" ", "")+")\n")
+                    else:
+                        outfile.write(course_codes_AND[0].replace(" ", "")+"-->"+courseIDList[index]+"\n")
+                    andCounter = andCounter + 1
                     THE_dict[courseIDList[index]]={"id":courseIDList[index],"preq":{"and":course_codes_AND}}
             else:
-                outfile.write(current_el_text.replace(" ", "")+"-->"+courseIDList[index]+"\n")
+                outfile.write(current_el_text.replace(" ", "").replace("(","").replace(")", "")+"("+current_el_text.replace(" ", "").replace("(","").replace(")", "")+")-->"+courseIDList[index]+"\n")
                 THE_dict[courseIDList[index]]={"id":courseIDList[index],"preq":current_el_text}
         else:
             THE_dict[courseIDList[index]]={"id":courseIDList[index],"preq":""}
@@ -222,7 +251,13 @@ with open(filename, 'w') as outfile:
             current_el_coreq = current_el_coreq.replace(" ", "")
             list = current_el_coreq.split(",")
             for codes in list:
-                outfile.write(codes+"--\"or\"---"+courseIDList[index]+"\n")
+                if(len(list)>1):
+                    outfile.write((codes.replace(" ", "")).replace(".", "").replace(")","")+"("+(codes.replace(" ", "")).replace(".", "").replace(")","")+")---"+str(orCounter)+"{OR}\n")
+            if(len(list) > 1):
+                    outfile.write(str(orCounter)+"{OR}---"+courseIDList[index].replace(" ", "")+"("+courseIDList[index].replace(" ", "")+")\n")
+                    orCounter = orCounter + 1
+            else:
+                outfile.write(codes.replace(" ", "")+"(" + codes.replace(" ", "")+")---"+courseIDList[index].replace(" ", "")+"("+courseIDList[index].replace(" ", "")+")\n")
             THE_dict[courseIDList[index]].update({"creq":{"or":list}})
         else:
             THE_dict[courseIDList[index]].update({"creq":""})
