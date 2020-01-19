@@ -134,11 +134,17 @@
             currentCourse = dataPassed.data;
             
             courseScore = 0;
-            $.getJSON("https://danbugs.github.io/bchacks2020/COSCPROFS.json", function(json){
+            $.getJSON("http://buildapool.space/COSCPROFS.json", function(json){
                 jason = json;
                 console.log(jason);
                 //filereader implementation from https://stackoverflow.com/questions/7346563/loading-local-json-file
                 //using file reader
+
+                //delete children
+                var div = document.getElementById("profs")
+                while (div.firstChild) {
+                  div.removeChild(div.firstChild);
+                }
 
                 for(var i = 0; i < jason.length; i++){
                     var obj = jason[i];
@@ -168,12 +174,6 @@
                            }else{
                              sentiment = "Would go out of their way to talk to them after class";
                            }
-
-                          //delete children
-                          var div = document.getElementById("profs")
-                          while (div.firstChild) {
-                            div.removeChild(div.firstChild);
-                          }
 
                         
                                 //add the professor's name to the first side of the row

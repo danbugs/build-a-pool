@@ -31,5 +31,20 @@ body {
     top: 0;
     left: 0;
     right: 0;
-    height: 120px;
+    height: 58px;
+    align-items: center;
+    width: 100vw;
+}
+
+.custom-header *{
+    display: inline;
+}
+
+.custom-header a{
+    color:grey;
+}
+
+.custom-header li{
+    padding-left: .5rem;
+    padding-right: .5rem;
 }

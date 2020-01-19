@@ -278,17 +278,17 @@ iframe {
     </style>
   </head>
   <body for="html-export">
-    <header class="custom-header">
-      <nav class="nav">
-        <ul>
-          <li><a href="#"><img src="buildapool.png" height="32"></a></li>
-          <li><a href="./index.html">Home<a></li>
-          <li><a href="./graph.html">Build pool</a></li>
-          <li><a href="./howto.html">How to</a></li>
-        </ul>
-      </nav>
-    </header>
-    <div class="mume markdown-preview">    
+    <div class="mume markdown-preview">   
+      <header class="custom-header">
+        <nav class="nav">
+          <ul>
+            <li><a href="#"><img src="buildapool.png" height="32" style="transform:translateY(10)"/></a></li>
+            <li><a href="./index.html">Home<a></li>
+            <li><a href="./graph.html">Build pool</a></li>
+            <li><a href="./howto.html">How to</a></li>
+          </ul>
+        </nav>
+      </header> 
     <div class="mermaid">graph TD
 PREC12(PREC12)--&gt;0{OR}
 MATH12(MATH12)--&gt;0{OR}
@@ -470,8 +470,8 @@ mermaid.init(null, document.getElementsByClassName('mermaid'))
 
 var p = document.createElement("iframe");
 p.setAttribute("src","./courseviewer.html")
-p.setAttribute("width","600px")
-p.setAttribute("height","400px")
+p.setAttribute("width","800px")
+p.setAttribute("height","200px")
 p.className = "tooltip"
 
 mainMermain = document.getElementsByClassName("mermaid")[0];
