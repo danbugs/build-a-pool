@@ -3,6 +3,10 @@ import requests
 from selenium import webdriver
 from selenium.webdriver import ActionChains
 from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.common.keys import Keys
+import re
+
+
 import json
 import time
 
@@ -17,20 +21,41 @@ RATING_RANK = {
 
 #scrape department to get prof urls
 def scrape_department(url):
-    print("blah-blah")
+    browser = webdriver.Chrome()
+    browser.get(url)
+
+    #enter computer science in dropdown list
+    browser.find_element_by_xpath("/html/body/div[1]/a[1]").click()
+    line = browser.find_element_by_xpath("/html/body/div[3]/div[4]/div/div[1]/div/div[3]/div/div/input")
+    line.send_keys("Computer Science", Keys.ENTER)
+    time.sleep(3)
+    html = browser.page_source
+    browser.close()
+
+    sp = BeautifulSoup(html, 'html.parser')
+
+    url_list = []
+    prof_list = sp.find(id="mainContent").find(class_="side-panel").find(class_="result-list")
+    for prof in prof_list.find_all("li"):
+       # print(prof.prettify())
+        link = prof.find("a")["href"]
+        link = "https://www.ratemyprofessors.com" + link
+        url_list.append(link)
+
+    return url_list
+
 
 #load all ratings on rmp page
 def load_rmp_ratings(url):
     browser = webdriver.Chrome()
     browser.get(url)
-    wait = WebDriverWait(browser, 5)
 
+    #click load more ratings until button is gone
     while True:
         try:
             actions = ActionChains(browser)
             #el = browser.find_elements_by_class_name("Buttons__Button-sc-19xdot-0")
             el = browser.find_element_by_xpath("/html/body/div[1]/div/div/div[2]/div[4]/div/div[1]/button")
-            #actions.move_to_element(el).perform().click()
             el.send_keys("\n")
             time.sleep(3)
 
@@ -53,6 +78,7 @@ def scrape_prof(url):
     print(f"PROF: {prof} DEP: {dep}")
 
     prof_data = {}
+    prof_data["name"] = prof
     prof_data["url"] = url
     prof_data["department"] = dep    
 
@@ -73,8 +99,10 @@ def scrape_prof(url):
             continue
 
         course = rating.find(class_="RatingHeader__StyledClass-sc-1dlkqw1-2").text
-        #skip course names that are long
+        #skip course names that dont have cosc and a number
         if "COSC" not in course:
+            continue
+        elif len(re.sub("\d+", "", course)) > 4:
             continue
         elif int(''.join(filter(str.isdigit, course))) > 999 :
             continue
@@ -100,13 +128,20 @@ def scrape_prof(url):
     prof_data["courses"] = [course_scores]
 
     filename = "COSC.json"
-    with open(filename, 'w') as outfile:
-        json.dump({prof: prof_data}, outfile, ensure_ascii=False, indent=4)
+    with open(filename, 'a') as outfile:
+        json.dump(prof_data, outfile, ensure_ascii=False, indent=4) #{prof: prof_data}
         #json.dump({'courses': course_scores}, outfile, ensure_ascii=False, indent=4)
 
 if __name__ == "__main__":
 
+    #initial cosc department url
+    url = "https://www.ratemyprofessors.com/search.jsp?queryBy=schoolId&schoolName=University+of+British+Columbia+-+Okanagan&schoolID=5436&queryoption=TEACHER"
+
+    prof_urls = scrape_department(url)
+    for prof_url in prof_urls:
+        scrape_prof(prof_url)
+
     #TODO find url of all professors for section, store url
-    url = "https://www.ratemyprofessors.com/ShowRatings.jsp?tid=1918500&showMyProfs=true"
-    scrape_prof(url)
+    #url = "https://www.ratemyprofessors.com/ShowRatings.jsp?tid=1918500&showMyProfs=true"
+    #scrape_prof(url)
 

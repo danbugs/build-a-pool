@@ -1,17 +1,158 @@
 {
-    "Abdallah Mohamed": {
-        "url": "https://www.ratemyprofessors.com/ShowRatings.jsp?tid=1918500&showMyProfs=true",
-        "department": "Computer Science department",
-        "courses": [
-            {
-                "COSC123": 30,
-                "COSC111": 260,
-                "COSC121": 40,
-                "COSC445": 20,
-                "COSC211": 90,
-                "COSC122": 80,
-                "COSC304": 10
-            }
-        ]
-    }
+    "name": "Abdallah Mohamed",
+    "url": "https://www.ratemyprofessors.com/ShowRatings.jsp?tid=1918500&showMyProfs=true",
+    "department": "Computer Science department",
+    "courses": [
+        {
+            "COSC123": 30,
+            "COSC111": 260,
+            "COSC121": 40,
+            "COSC445": 20,
+            "COSC211": 90,
+            "COSC122": 80,
+            "COSC304": 10
+        }
+    ]
+}{
+    "name": "Ramon Lawrence",
+    "url": "https://www.ratemyprofessors.com/ShowRatings.jsp?tid=884355&showMyProfs=true",
+    "department": "Computer Science department",
+    "courses": [
+        {
+            "COSC304": 180,
+            "COSC404": 50,
+            "COSC301": 10,
+            "COSC122": 210,
+            "COSC111": 10
+        }
+    ]
+}{
+    "name": "Yves Lucet",
+    "url": "https://www.ratemyprofessors.com/ShowRatings.jsp?tid=654931&showMyProfs=true",
+    "department": "Computer Science department",
+    "courses": [
+        {
+            "COSC222": 30,
+            "COSC223": -10,
+            "COSC406": 20,
+            "COSC303": -10,
+            "COSC225": -10,
+            "COSC320": -40,
+            "COSC221": -10
+        }
+    ]
+}{
+    "name": "Irene Vrbik",
+    "url": "https://www.ratemyprofessors.com/ShowRatings.jsp?tid=2407086&showMyProfs=true",
+    "department": "Computer Science department",
+    "courses": [
+        {
+            "COSC301": -20
+        }
+    ]
+}{
+    "name": "James YU",
+    "url": "https://www.ratemyprofessors.com/ShowRatings.jsp?tid=1910945&showMyProfs=true",
+    "department": "Computer Science department",
+    "courses": [
+        {
+            "COSC305": 20,
+            "COSC310": 0,
+            "COSC470": -10,
+            "COSC121": 40,
+            "COSC499": 10,
+            "COSC211": 0,
+            "COSC111": 10
+        }
+    ]
+}{
+    "name": "Bowen Hui",
+    "url": "https://www.ratemyprofessors.com/ShowRatings.jsp?tid=1792711&showMyProfs=true",
+    "department": "Computer Science department",
+    "courses": [
+        {
+            "COSC111": -10,
+            "COSC341": 0,
+            "COSC442": 10,
+            "COSC101": 0,
+            "COSC121": 0
+        }
+    ]
+}{
+    "name": "Yong Gao",
+    "url": "https://www.ratemyprofessors.com/ShowRatings.jsp?tid=654919&showMyProfs=true",
+    "department": "Computer Science department",
+    "courses": [
+        {
+            "COSC221": -70,
+            "COSC322": -30,
+            "COSC320": -40,
+            "COSC211": -20,
+            "COSC231": -10,
+            "COSC111": -30
+        }
+    ]
+}{
+    "name": "Patricia Lasserre",
+    "url": "https://www.ratemyprofessors.com/ShowRatings.jsp?tid=654921&showMyProfs=true",
+    "department": "Computer Science department",
+    "courses": [
+        {
+            "COSC341": 20,
+            "COSC121": 0,
+            "COSC111": 40,
+            "COSC459": 10,
+            "COSC1": 10
+        }
+    ]
+}{
+    "name": "Scott Fazackerley",
+    "url": "https://www.ratemyprofessors.com/ShowRatings.jsp?tid=1733627&showMyProfs=true",
+    "department": "Computer Science department",
+    "courses": [
+        {
+            "COSC328": 30,
+            "COSC121": 20,
+            "COSC305": 40,
+            "COSC211": 10
+        }
+    ]
+}{
+    "name": "Miles Thorogood",
+    "url": "https://www.ratemyprofessors.com/ShowRatings.jsp?tid=2124170&showMyProfs=true",
+    "department": "Computer Science department",
+    "courses": [
+        {
+            "COSC150": -10,
+            "COSC114": 20
+        }
+    ]
+}{
+    "name": "Mohammad Hasan",
+    "url": "https://www.ratemyprofessors.com/ShowRatings.jsp?tid=2437430&showMyProfs=true",
+    "department": "Computer Science department",
+    "courses": [
+        {
+            "COSC222": -10,
+            "COSC341": 20
+        }
+    ]
+}{
+    "name": "Jocelyn Smith",
+    "url": "https://www.ratemyprofessors.com/ShowRatings.jsp?tid=2173972&showMyProfs=true",
+    "department": "Computer Science department",
+    "courses": [
+        {
+            "COSC341": -40
+        }
+    ]
+}{
+    "name": "Fatemah Hendijani Fard",
+    "url": "https://www.ratemyprofessors.com/ShowRatings.jsp?tid=2551550&showMyProfs=true",
+    "department": "Computer Science department",
+    "courses": [
+        {
+            "COSC328": 20
+        }
+    ]
 }
