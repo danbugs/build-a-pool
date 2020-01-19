@@ -127,10 +127,12 @@
         var sentiment;
         var totalsent = 0;
         var count = 0;
-        var avgsent = 0;
-        window.onload = function(){
-            currentCourse = "COSC221";
-            
+        var avgsent;
+
+        window.addEventListener("message", receiveMessage, false);
+
+        function receiveMessage(dataPassed){
+            currentCourse = dataPassed.data;
             
             courseScore = 0;
             $.getJSON("https://danbugs.github.io/bchacks2020/COSCPROFS.json", function(json){

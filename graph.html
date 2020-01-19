@@ -3,14 +3,13 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       
-      <link rel="stylesheet" href="file:////Users/carol/.atom/packages/markdown-preview-enhanced/node_modules/@shd101wyy/mume/dependencies/katex/katex.min.css">
       
       
 
       
-      <script type="text/javascript" src="file:////Users/carol/.atom/packages/markdown-preview-enhanced/node_modules/@shd101wyy/mume/dependencies/mermaid/mermaid.min.js" charset="UTF-8"></script>
-      
-      
+      <script type="text/javascript" src="./mermaid.min.js" charset="UTF-8"></script>
+      <link rel="stylesheet" href="./graph.css">
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
       
       
       
@@ -259,17 +258,160 @@ pre[data-line] .line-highlight[data-end]:after {
 /* Please visit the URL below for more information: */
 /*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
 
+.tooltip {
+    visibility: hidden;
+    position: absolute;
+  }
+
+  .node:hover .tooltip{
+    visibility: visible !important;
+  }
+
+  iframe {
+    border: none;
+  }
+
       </style>
     </head>
     <body for="html-export">
       <div class="mume markdown-preview  ">
-      <div class="mermaid">graph LR
-MATH200(MATH200)--&gt;1010{AND}
-APSC248(APSC248)--&gt;1010{AND}
-MATH221(MATH221)--&gt;0{OR}
-APSC179(APSC179)--&gt;0{OR}
-0{OR}--&gt;COSC414(COSC414)
-1011{AND}--&gt;COSC414(COSC414)
+      <div class="mermaid">graph TD
+PREC12(PREC12)--&gt;0{OR}
+MATH12(MATH12)--&gt;0{OR}
+MATH125(MATH125)--&gt;0{OR}
+0{OR}--&gt;COSC111(COSC111)
+MATH12(MATH12)--&gt;1{OR}
+PREC12(PREC12)--&gt;1{OR}
+CALC12(CALC12)--&gt;1{OR}
+1{OR}--&gt;COSC114(COSC114)
+COSC111(COSC111)--&gt;2{OR}
+COSC123(COSC123)--&gt;2{OR}
+2{OR}--&gt;COSC121(COSC121)
+COSC111(COSC111)--&gt;3{OR}
+COSC122(COSC122)--&gt;3{OR}
+3{OR}--&gt;COSC123(COSC123)
+COSC111(COSC111)---4{OR}
+COSC122(COSC122)---4{OR}
+APSC177(APSC177)---4{OR}
+4{OR}---COSC150(COSC150)
+APSC177(APSC177)--&gt;5{OR}
+COSC111(COSC111)--&gt;5{OR}
+5{OR}--&gt;COSC210(COSC210)
+COSC121--&gt;COSC211
+MATH101(MATH101)--&gt;6{OR}
+MATH142(MATH142)--&gt;6{OR}
+APSC172(APSC172)--&gt;6{OR}
+6{OR}--&gt;COSC221(COSC221)
+COSC121(COSC121)---COSC221(COSC221)
+COSC121--&gt;COSC222
+COSC114(COSC114)--&gt;7{OR}
+APSC171(APSC171)--&gt;7{OR}
+7{OR}--&gt;1002{AND}
+8{OR}--&gt;1002{AND}
+COSC123(COSC123)--&gt;8{OR}
+COSC111(COSC111)--&gt;8{OR}
+1002{AND}--&gt;COSC223(COSC223)
+COSC223(COSC223)--&gt;COSC247
+COSC121(COSC121)--&gt;9{OR}
+COSC223(COSC223)--&gt;9{OR}
+9{OR}--&gt;COSC264(COSC264)
+3rd(3rd)--&gt;10{OR}
+COSC111(COSC111)--&gt;10{OR}
+COSC122(COSC122)--&gt;10{OR}
+10{OR}--&gt;COSC301(COSC301)
+MATH200(MATH200)--&gt;1003{AND}
+MATH221(MATH221)--&gt;1003{AND}
+COSC111(COSC111)--&gt;1003{AND}
+1003{AND}--&gt;COSC303(COSC303)
+COSC111(COSC111)--&gt;11{OR}
+COSC123(COSC123)--&gt;11{OR}
+APSC177(APSC177)--&gt;11{OR}
+3rd(3rd)--&gt;11{OR}
+11{OR}--&gt;COSC304(COSC304)
+COSC310(COSC310)---COSC305(COSC305)
+COSC210(COSC210)--&gt;12{OR}
+COSC222(COSC222)--&gt;12{OR}
+COSC223(COSC223)--&gt;12{OR}
+3rd(3rd)--&gt;12{OR}
+12{OR}--&gt;COSC310(COSC310)
+COSC221(COSC221)--&gt;1004{AND}
+COSC222(COSC222)--&gt;1004{AND}
+1004{AND}--&gt;COSC315(COSC315)
+COSC221(COSC221)--&gt;1005{AND}
+COSC222(COSC222)--&gt;1005{AND}
+MATH221(MATH221)--&gt;1005{AND}
+1005{AND}--&gt;COSC320(COSC320)
+COSC221(COSC221)--&gt;1006{AND}
+COSC222(COSC222)--&gt;1006{AND}
+1006{AND}--&gt;COSC322(COSC322)
+COSC211(COSC211)--&gt;1007{AND}
+COSC222(COSC222)--&gt;1007{AND}
+1007{AND}--&gt;COSC328(COSC328)
+COSC222(COSC222)--&gt;COSC331
+COSC222(COSC222)--&gt;COSC335
+COSC111(COSC111)--&gt;13{OR}
+COSC121(COSC121)--&gt;13{OR}
+COSC123(COSC123)--&gt;13{OR}
+DATA301(DATA301)--&gt;13{OR}
+3rd(3rd)--&gt;13{OR}
+13{OR}--&gt;COSC341(COSC341)
+COSC121(COSC121)--&gt;1008{AND}
+COSC304(COSC304)--&gt;1008{AND}
+3rd(3rd)--&gt;1008{AND}
+1008{AND}--&gt;COSC360(COSC360)
+COSC304(COSC304)--&gt;1009{AND}
+3rd(3rd)--&gt;1009{AND}
+1009{AND}--&gt;COSC404(COSC404)
+COSC221--&gt;COSC405
+MATH200(MATH200)--&gt;14{OR}
+APSC248(APSC248)--&gt;14{OR}
+14{OR}--&gt;1011{AND}
+15{OR}--&gt;1011{AND}
+MATH221(MATH221)--&gt;15{OR}
+APSC179(APSC179)--&gt;15{OR}
+1011{AND}--&gt;COSC406(COSC406)
+COSC111(COSC111)--&gt;16{OR}
+3rd(3rd)--&gt;16{OR}
+16{OR}--&gt;COSC407(COSC407)
+COSC221(COSC221)--&gt;1012{AND}
+COSC222(COSC222)--&gt;1012{AND}
+MATH221(MATH221)--&gt;17{OR}
+APSC179(APSC179)--&gt;17{OR}
+17{OR}--&gt;1012{AND}
+1012{AND}--&gt;COSC414(COSC414)
+COSC304(COSC304)--&gt;1013{AND}
+3rd(3rd)--&gt;1013{AND}
+1013{AND}--&gt;COSC416(COSC416)
+COSC315(COSC315)--&gt;18{OR}
+COSC328(COSC328)--&gt;18{OR}
+18{OR}--&gt;COSC417(COSC417)
+4th(4th)--&gt;COSC419
+COSC222(COSC222)--&gt;1014{AND}
+COSC320(COSC320)--&gt;19{OR}
+COSC322(COSC322)--&gt;19{OR}
+19{OR}--&gt;1014{AND}
+1014{AND}--&gt;COSC420(COSC420)
+3rd(3rd)--&gt;COSC421
+COSC222--&gt;COSC435
+COSC341(COSC341)--&gt;1016{AND}
+COSC310(COSC310)--&gt;1016{AND}
+1016{AND}--&gt;COSC442(COSC442)
+COSC222(COSC222)--&gt;1017{AND}
+MATH200(MATH200)--&gt;20{OR}
+APSC248(APSC248)--&gt;20{OR}
+20{OR}--&gt;1017{AND}
+MATH221(MATH221)--&gt;21{OR}
+APSC179(APSC179)--&gt;21{OR}
+21{OR}--&gt;1017{AND}
+1017{AND}--&gt;COSC445(COSC445)
+3rd(3rd)--&gt;COSC447
+3rd(3rd)--&gt;COSC448
+4th(4th)--&gt;COSC449
+3rd(3rd)--&gt;COSC490
+COSC304(COSC304)--&gt;1018{AND}
+COSC341(COSC341)--&gt;1018{AND}
+COSC310(COSC310)--&gt;1018{AND}
+1018{AND}--&gt;COSC499(COSC499)
 </div>
       </div>
       
@@ -311,6 +453,55 @@ if (typeof(window['Reveal']) !== 'undefined') {
 } else {
   mermaid.init(null, document.getElementsByClassName('mermaid'))
 }
+
+  var p = document.createElement("iframe");
+  p.setAttribute("src","./courseviewer.html")
+  p.setAttribute("width","600px")
+  p.setAttribute("height","400px")
+  p.className = "tooltip"
+
+  mainMermain = document.getElementsByClassName("mermaid")[0];
+  mainMermain.appendChild(p);
+
+  function moveTooltip(event, id) {
+
+    if (!id.includes("COSC")){
+        return
+    }
+
+    var tooltip = document.getElementsByClassName('tooltip')[0]
+    tooltip.style.visibility = "visible";
+    var cont = document.getElementsByClassName("mermaid")[0]
+
+    var frame =  document.getElementsByTagName("iframe")[0]
+    frame.contentWindow.postMessage(id, "*")
+
+    var xPosition = event.clientX - cont.getBoundingClientRect().left - (tooltip.clientWidth / 2);
+    var yPosition = event.clientY - cont.getBoundingClientRect().top - (tooltip.clientHeight / 2);
+    // in case of a wide border, the boarder-width needs to be considered in the formula above
+    tooltip.style.left = (xPosition + 280) + "px";
+    tooltip.style.top = (yPosition + 50) + "px";
+
+
+    setTimeout(function() {
+      tooltip.style.visibility = "hidden";
+    }, 6000);
+  }
+
+  var nodes = document.getElementsByClassName('node');
+  for(var i = 0; i < nodes.length; i++) {
+      var node = nodes[i];
+
+      node.onclick = function(event) {
+        moveTooltip(event, this.id)
+          //alert(this.id);
+      } 
+      node.addEventListener("mouseenter", function( event ) { 
+        moveTooltip(event, this.id)
+      })
+  }
+
+
 </script>
     
     
