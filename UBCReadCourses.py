@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup
 import re
 import json
 
+# Function that classifies the prerequisites based on the text description
 def sortPrerequisites(prereqtext, minGradetext):
     this_prereqs=""
     if(prereqtext.find("one of")>0):
@@ -31,11 +32,14 @@ def sortPrerequisites(prereqtext, minGradetext):
         this_prereqs = minGradetext +"("+courses.strip(".\n")+")"
     return this_prereqs
 
+#List definition
 courseANDdesc = dict()
 courseIDList = []
 coursePrereqs = []
 courseCoreqs = []
 coursePrereqsOR = []
+
+#Used beautiful soup for web scrapping the content
 URL = "http://www.calendar.ubc.ca/okanagan/courses.cfm?code=cosc"
 page = requests.get(URL)
 
@@ -49,6 +53,8 @@ for courseID in course_names_raw:
     courseIDList.append(value)
 
 course_descriptions_raw = results.find_all('dd')
+
+# This is the part of the code that evaluates ALL the prerequisites and corequisites
 index = 0
 for prereq in course_descriptions_raw:
     values = []
@@ -153,13 +159,11 @@ for prereq in course_descriptions_raw:
                 second_course = pre.split("and a score of 60% or higher in")
                 text = "OR(" + pre[0:9] + ", "+second_course[1].strip(".\n")+")"
             if(pre.find("one of") > 0):
-<<<<<<< HEAD
                 list_courses = pre.split("and one of")
                 if(len(list_courses)>2):
                     text = "AND("+list_courses[0]+"(OR("+list_courses[1]+")OR("+list_courses[2].strip(". \n")+")"
                 else:
                     text = "AND("+list_courses[0]+")"+"OR("+list_courses[1].strip(". \n")+")"
->>>>>>> 4ed956e448b5badcb11945c779703551189ebe56
             this_course_prereqs.append(text)
         coursePrereqs.append(this_course_prereqs)
 
@@ -174,7 +178,8 @@ for prereq in course_descriptions_raw:
     else:
         courseCoreqs.append("")
 
-#Dictionaryyyyyy
+#Save data in a dictionary to export to json file
+# Also save data in format for MERMAID to display the graph. MOST IMPORTANT PART!
 filename = "MERMAID.txt"
 with open(filename, 'w') as outfile:
     THE_dict = {}
@@ -220,7 +225,6 @@ with open(filename, 'w') as outfile:
                     subOR = andStuff.split("OR(")
                     subOR[0] = subOR[0].split(",")
                     subOR[1] = subOR[1].split(",")
-<<<<<<< HEAD
                     for codes in subOR[0]:
                         outfile.write(((codes.replace(" ", "")).replace(".", "")).replace("(","").replace(")","")+"("+(codes.replace(" ", "")).replace(".", "").replace("(","").replace(")","")+")-->"+str(andCounter)+"{AND}\n")
                     for codes in subOR[1]:
@@ -234,7 +238,6 @@ with open(filename, 'w') as outfile:
                         for codes in subOR[2]:
                             outfile.write((codes.replace(" ", "")).replace(".", "").replace(")","")+"("+(codes.replace(" ", "")).replace(".", "").replace(")","")+")-->"+str(orCounter)+"{OR}\n")
                         outfile.write(str(orCounter)+"{OR}-->"+str(andCounter)+"{AND}\n")
->>>>>>> 4ed956e448b5badcb11945c779703551189ebe56
                     outfile.write(str(andCounter)+"{AND}-->"+courseIDList[index].replace(" ", "")+"("+courseIDList[index].replace(" ", "")+")\n")
                     orCounter = orCounter + 1
                     andCounter = andCounter + 1
