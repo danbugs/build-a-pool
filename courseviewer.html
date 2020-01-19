@@ -136,7 +136,7 @@
         var jason;
         var currentCourse;
         var courseScore;
-    
+        var sentiment;
         function init(){
             currentCourse = "COSC123";
             
@@ -147,13 +147,29 @@
                 for(var i = 0; i < jason.length; i++){
                     var obj = jason[i];
                     var courses = jason[i].courses;
-                    console.log(courses[0]);
+                   
                     if(courses[0].hasOwnProperty(currentCourse)){
                        
                         
                         courseScore = courses[0][currentCourse];
-                        var result = courseScore + 30;
-                        console.log(courseScore);
+                           //the course score is an int
+                           if(courseScore < -50){
+                            sentiment = "Would write a review purely to insult them"
+                           }else if(courseScore >-50 && courseScore<0){
+                             sentiment = "Would probably skip their class";
+                           }
+                            else if(courseScore > 0 &&courseScore < 50){
+                             sentiment = "Would not complain heavily about them";
+                           
+                           }else if(courseScore >50 && courseScore< 100){
+                             sentiment = "Would probably be nice to their kid";
+                           
+                           }else{
+                             sentiment = "Would go out of their way to talk to them after class";
+                           }
+
+        
+                        
                                 //add the professor's name to the first side of the row
                            var li = document.createElement("li");
                            li.setAttribute("class", "firstlist");
@@ -165,24 +181,21 @@
                            //add the professor's score for the course on the other side
                            var li = document.createElement("li");
                            li.setAttribute("class", "secondlist");
-                           var inputValue = courseScore;
+                           var inputValue = sentiment;
                            var t = document.createTextNode(inputValue);
                            li.appendChild(t);
                            document.getElementById("profs").appendChild(li);
                            document.getElementById("myInput").value = "";
-                        }
+                        
        
-                    }
+                    }}
             }); 
+        
+            
+        
         }
-        
-        
          
-         
-         
-        
-   
-     
+
  
     </script>
   </body>
