@@ -1,16 +1,32 @@
-
-{
-        "name": "abdallah mohammed",
-        "url": "https://www.ratemyprofessors.com/ShowRatings.jsp?tid=1918500&showMyProfs=true",
-        "department": "Computer Science department",  
-        "courses": [{
-            "COSC123": 30,
-            "COSC111": 140,
-            "COSC121": 10,
-            "COSC445": 10,
-            "COSC211": 50,
-            "COSC122": 20
-        }
-        ]
-    }
-  
+[
+  {
+    "name": "abdallah mohammed",
+    "url": "https://www.ratemyprofessors.com/ShowRatings.jsp?tid=1918500&showMyProfs=true",
+    "department": "Computer Science department",
+    "courses": [
+      {
+        "COSC123": 30,
+        "COSC111": 140,
+        "COSC121": 10,
+        "COSC445": 10,
+        "COSC211": 50,
+        "COSC122": 20
+      }
+    ]
+  },
+  {
+    "name": "yves lucet",
+    "url": "https://www.ratemyprofessors.com/ShowRatings.jsp?tid=1918500&showMyProfs=true",
+    "department": "Computer Science department",
+    "courses": [
+      {
+        "COSC123": 30,
+        "COSC111": 140,
+        "COSC121": 10,
+        "COSC445": 10,
+        "COSC211": 50,
+        "COSC122": 20
+      }
+    ]
+  }
+]

@@ -2,11 +2,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-   
+    
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <script type="text/javascript" src="data.json"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    
+
     <title>Course Viewer Page BC Hacks 2020</title>
     <style>
       body {
@@ -84,7 +86,7 @@
    
       .firstlist {
         font-family: sans-serif;
-        background-color: rgb(255, 239, 146);
+        
         float: left;
         width: 50%;
         
@@ -101,9 +103,9 @@
       }
       .secondlist{
         font-family: sans-serif;
-        background-color: gold;
+        
         float: right;
-        width: 50%;
+        width: 45%;
         
        
         list-style-type: none;
@@ -127,7 +129,7 @@
     <h2>Course Professors</h2>
     <div id="myDIV" class="header">
       <input type="text" id="myInput" placeholder="Profs..." />
-      <span onClick="newElement()" class="addBtn">Add Prof</span>
+      <span onClick="init()" class="addBtn">INITIALIZE LOOPS</span>
     </div>
     <ul  id="profs">
         <li>
@@ -137,33 +139,57 @@
     <script>
         //references: https://www.w3schools.com/howto/howto_js_todolist.asp
         //https://codepen.io/KryptoniteDove/post/load-json-file-locally-using-pure-javascript
-     var jason;
-     function loadJSON(callback){
-         var xobj = new XMLHttpRequest();
-         xobj.overrideMimeType("application/json");
-         xobj.open('GET', 'COSC.json', true);
-         xobj.onreadystatechange = function () {
-             if (xobj.readyState == 4 && xobj.status == "200")
-             {
-                 callback(xobj.responseText);
-             }
-         };
-         xobj.send(null);
-     }
-     function init(){
-         LoadJSON(function(response){
-                jason = JSON.parse(response);
-         });
-     }
-      function newElement() {
-        var li = document.createElement("li");
-        li.setAttribute("class", "secondlist");
-        var inputValue = document.getElementById("myInput").value;
-        var t = document.createTextNode(inputValue);
-        li.appendChild(t);
-        document.getElementById("profs").appendChild(li);
-        document.getElementById("myInput").value = "";
-      }
+        //https://stackoverflow.com/questions/18238173/javascript-loop-through-json-array
+
+        var jason;
+        var currentCourse;
+        var courseScore;
+        function init(){
+            currentCourse = "COSC123";
+            
+           // currentCode = currentCourse.replace(/['"]+/g, '');
+            courseScore = 0;
+            $.getJSON("COSC.json", function(json){
+                jason = json;
+                for(var i = 0; i < jason.length; i++){
+                    var obj = jason[i];
+                    var courses = jason[i].courses;
+                    console.log(courses[0]);
+                    if(courses[0].hasOwnProperty(currentCourse)){
+                        console.log("property workin!!!");
+                        
+                        courseScore = courses[0][currentCourse];
+                        console.log(courseScore);
+                                //add the professor's name to the first side of the row
+                           var li = document.createElement("li");
+                           li.setAttribute("class", "firstlist");
+                           var inputValue = obj.name
+                           var t = document.createTextNode(inputValue);
+                           li.appendChild(t);
+                           document.getElementById("profs").appendChild(li);
+                           document.getElementById("myInput").value = "";
+                           //add the professor's score for the course on the other side
+                           var li = document.createElement("li");
+                           li.setAttribute("class", "secondlist");
+                           var inputValue = courseScore;
+                           var t = document.createTextNode(inputValue);
+                           li.appendChild(t);
+                           document.getElementById("profs").appendChild(li);
+                           document.getElementById("myInput").value = "";
+                        }
+       
+                    }
+            }); 
+        }
+        
+        
+         
+         
+         
+        
+   
+     
+ 
     </script>
   </body>
 </html>
