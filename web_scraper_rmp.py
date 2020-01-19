@@ -197,7 +197,7 @@ if __name__ == "__main__":
         url,
         "COSC",
         "Computer Science",
-        "COSC.json"
+        "COSC_PROFS.json"
     )
     parser.parse_courses()
 
