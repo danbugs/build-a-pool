@@ -134,9 +134,7 @@ for prereq in course_descriptions_raw:
             prereq_2 = valueB
             if(valueB.find("of")>0):
                 courses_either = valueB.strip("one of ")
-                print(courses_either)
                 courses_either_list = courses_either.replace(" or", ",")
-                print(courses_either_list)
                 prereq_2 = courses_either_list.strip(".\n")
             extra=""
             if(valueB.find(" is required")>0):
@@ -174,55 +172,65 @@ for prereq in course_descriptions_raw:
         courseCoreqs.append("")
 
 #Dictionaryyyyyy
-THE_dict = {}
-for index in range(0, len(coursePrereqs)-1):
-    current_el = coursePrereqs[index]
-    if(len(current_el) > 0):
-        current_el_text = current_el[0]
-        if(current_el_text[0:2] == "OR"):
-            if(current_el_text.find("AND") > 0):
-                orStuff = current_el_text.replace("OR(", "")
-                orStuff = orStuff.replace(" ", "")
-                subAND = orStuff.split(")AND(")
-                THE_dict[courseIDList[index]]={"id":courseIDList[index],"preq":{"and":{"or1":subAND[0].replace(" ", ""), "or2":subAND[1].replace(" ", "")}}}
-            else:
-                courses_format = current_el_text.replace("OR(", "")
-                courses_format = courses_format.replace(")", "")
-                courses_format = courses_format.replace(" ", "")
-                course_codesOR = courses_format.split(",")
-                THE_dict[courseIDList[index]]={"id":courseIDList[index],"preq":{"or":course_codesOR}}
-        elif(current_el_text[0:3] == "AND"):
-            if(current_el_text.find("OR")>0):
-                andStuff = current_el_text.replace("AND(", "")
-                andStuff = andStuff.replace(" ", "")
-                subOR = andStuff.split("OR(")
-                THE_dict[courseIDList[index]]={"id":courseIDList[index],"preq":{"and":{"and":subOR[0].split(","), "or":subOR[1].split(",")}}}
-            else:
-                courses_format = current_el_text.replace("AND(", "")
-                courses_format = courses_format.replace(")", "")
-                courses_format = courses_format.replace(" ", "")
-                course_codes_AND = courses_format.split(",")
-                THE_dict[courseIDList[index]]={"id":courseIDList[index],"preq":{"and":course_codes_AND}}
-        else:
-            THE_dict[courseIDList[index]]={"id":courseIDList[index],"preq":current_el_text}
-    else:
-        THE_dict[courseIDList[index]]={"id":courseIDList[index],"preq":""}
-
-    current_el_coreq = courseCoreqs[index]
-    if(len(current_el_coreq) > 0):
-        current_el_coreq = current_el_coreq.replace(" ", "")
-        list = current_el_coreq.split(",")
-        THE_dict[courseIDList[index]].update({"creq":{"or":list}})
-    else:
-        THE_dict[courseIDList[index]].update({"creq":""})
-
-filename = "file.json"
+filename = "MERMAID.txt"
 with open(filename, 'w') as outfile:
-    json.dump(THE_dict,outfile, sort_keys=False, indent = 4)
+    THE_dict = {}
+    orCounter = 0
+    for index in range(0, len(coursePrereqs)-1):
+        current_el = coursePrereqs[index]
+        if(len(current_el) > 0):
+            current_el_text = current_el[0]
+            if(current_el_text[0:2] == "OR"):
+                if(current_el_text.find("AND") > 0):
+                    orStuff = current_el_text.replace("OR(", "")
+                    orStuff = orStuff.replace(" ", "")
+                    subAND = orStuff.split(")AND(")
+                    THE_dict[courseIDList[index]]={"id":courseIDList[index],"preq":{"and":{"or1":subAND[0].replace(" ", ""), "or2":subAND[1].replace(" ", "")}}}
+                else:
+                    courses_format = current_el_text.replace("OR(", "")
+                    courses_format = courses_format.replace(")", "")
+                    courses_format = courses_format.replace(" ", "")
+                    course_codesOR = courses_format.split(",")
+                    for codes in course_codesOR:
+                        print(courseIDList[index] + "for")
+                        if(codes.find("\n") < 0):
+                            print(codes)
+                            outfile.write(codes.replace(" ", "")+"--\"or\"-->"+courseIDList[index]+"\n")
+                    THE_dict[courseIDList[index]]={"id":courseIDList[index],"preq":{"or":course_codesOR}}
+            elif(current_el_text[0:3] == "AND"):
+                if(current_el_text.find("OR")>0):
+                    andStuff = current_el_text.replace("AND(", "")
+                    andStuff = andStuff.replace(" ", "")
+                    subOR = andStuff.split("OR(")
+                    THE_dict[courseIDList[index]]={"id":courseIDList[index],"preq":{"and":{"and":subOR[0].split(","), "or":subOR[1].split(",")}}}
+                else:
+                    courses_format = current_el_text.replace("AND(", "")
+                    courses_format = courses_format.replace(")", "")
+                    courses_format = courses_format.replace(" ", "")
+                    course_codes_AND = courses_format.split(",")
+                    for codes in course_codes_AND:
+                            outfile.write(codes.replace(" ", "")+"--\"and\"-->"+courseIDList[index]+"\n")
+                    THE_dict[courseIDList[index]]={"id":courseIDList[index],"preq":{"and":course_codes_AND}}
+            else:
+                outfile.write(current_el_text.replace(" ", "")+"-->"+courseIDList[index]+"\n")
+                THE_dict[courseIDList[index]]={"id":courseIDList[index],"preq":current_el_text}
+        else:
+            THE_dict[courseIDList[index]]={"id":courseIDList[index],"preq":""}
 
-for value in THE_dict:
-    print(value)
-    print(THE_dict[value])
+        current_el_coreq = courseCoreqs[index]
+        if(len(current_el_coreq) > 0):
+            current_el_coreq = current_el_coreq.replace(" ", "")
+            list = current_el_coreq.split(",")
+            for codes in list:
+                outfile.write(codes+"--\"or\"---"+courseIDList[index]+"\n")
+            THE_dict[courseIDList[index]].update({"creq":{"or":list}})
+        else:
+            THE_dict[courseIDList[index]].update({"creq":""})
+
+# filename = "filenotimportant.json"
+# with open(filename, 'w') as outfile:
+#     json.dump(THE_dict,outfile, sort_keys=False, indent = 4)
+
 # index = 0
 # for value in coursePrereqs:
 #     print(courseIDList[index])
