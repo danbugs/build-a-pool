@@ -6,6 +6,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script type="text/javascript" src="data.json"></script>
     <title>Course Viewer Page BC Hacks 2020</title>
     <style>
       body {
@@ -83,7 +84,7 @@
    
       .firstlist {
         font-family: sans-serif;
-        background-color: gold;
+        background-color: rgb(255, 239, 146);
         float: left;
         width: 50%;
         
@@ -135,11 +136,28 @@
     </ul>
     <script>
         //references: https://www.w3schools.com/howto/howto_js_todolist.asp
-
-      //adds a new prof (and soon score) to the list
+        //https://codepen.io/KryptoniteDove/post/load-json-file-locally-using-pure-javascript
+     var jason;
+     function loadJSON(callback){
+         var xobj = new XMLHttpRequest();
+         xobj.overrideMimeType("application/json");
+         xobj.open('GET', 'COSC.json', true);
+         xobj.onreadystatechange = function () {
+             if (xobj.readyState == 4 && xobj.status == "200")
+             {
+                 callback(xobj.responseText);
+             }
+         };
+         xobj.send(null);
+     }
+     function init(){
+         LoadJSON(function(response){
+                jason = JSON.parse(response);
+         });
+     }
       function newElement() {
         var li = document.createElement("li");
-       
+        li.setAttribute("class", "secondlist");
         var inputValue = document.getElementById("myInput").value;
         var t = document.createTextNode(inputValue);
         li.appendChild(t);
