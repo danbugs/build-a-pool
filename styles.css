@@ -1,0 +1,26 @@
+body {
+    background-color: #3498DB !important;
+}
+
+.custom-nav{
+    position:fixed !important;
+    width:100vw;
+    z-index: 100;
+}
+
+.mermaid{
+    margin-top: 100px !important;
+}
+
+.footer{
+    margin: 25px 0px 0px;
+}
+
+.jumbotron{
+    height: 100px !important;
+    margin: 0 auto !important;
+}
+
+.navbar{
+    width: 100vw !important;
+}
