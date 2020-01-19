@@ -450,9 +450,9 @@ if (typeof(window['Reveal']) !== 'undefined') {
   mermaid.init(null, document.getElementsByClassName('mermaid'))
 }
 
-var p = document.createElement("iframe");
-  p.setAttribute("src","courseviewer.html")
-  p.setAttribute("width","400px")
+  var p = document.createElement("iframe");
+  p.setAttribute("src","./courseviewer.html")
+  p.setAttribute("width","500px")
   p.setAttribute("height","400px")
   p.className = "tooltip"
 
@@ -470,7 +470,7 @@ var p = document.createElement("iframe");
     var cont = document.getElementsByClassName("mermaid")[0]
 
     var frame =  document.getElementsByTagName("iframe")[0]
-    frame.contentWindow.postMessage(id)
+    frame.contentWindow.postMessage(id, "*")
 
     var xPosition = event.clientX - cont.getBoundingClientRect().left - (tooltip.clientWidth / 2);
     var yPosition = event.clientY - cont.getBoundingClientRect().top - (tooltip.clientHeight / 2);
