@@ -261,18 +261,19 @@ bottom: .4em;
 /*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
 
 .tooltip {
-  visibility: hidden;
+  opacity: 0;
   position: absolute;
 }
 
 .node:hover .tooltip{
-  visibility: visible !important;
+  opacity: 1 !important;
 }
 
 iframe {
   border: none;
   box-shadow: 10px 10px 5px rgba(128, 128, 128, 0.466);
   background-color: white;
+  transition: all 0.5s ease-in-out;
 }
 
     </style>
@@ -484,7 +485,7 @@ function moveTooltip(event, id) {
   }
 
   var tooltip = document.getElementsByClassName('tooltip')[0]
-  tooltip.style.visibility = "visible";
+  tooltip.style.opacity = 1;
   var cont = document.getElementsByClassName("mermaid")[0]
 
   var frame =  document.getElementsByTagName("iframe")[0]
@@ -498,7 +499,7 @@ function moveTooltip(event, id) {
 
 
   setTimeout(function() {
-    tooltip.style.visibility = "hidden";
+    tooltip.style.opacity = 0;
   }, 6000);
 }
 
