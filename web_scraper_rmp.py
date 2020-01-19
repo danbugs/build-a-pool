@@ -77,12 +77,15 @@ def scrape_prof(url):
     #page header titles
     prof = sp.find(class_="NameTitle__Name-dowf0z-0").text
     dep = sp.find(class_="NameTitle__Title-dowf0z-1").find('b').text
+    helpful_comment = sp.find(class_="HelpfulRating__StyledComments-sc-4ngnti-1 GxNke").text
     print(f"PROFESSOR: {prof} DEPARTMENT: {dep}")
 
+    #dictionary of json data to output
     prof_data = {}
     prof_data["name"] = prof
     prof_data["url"] = url
-    prof_data["department"] = dep    
+    prof_data["department"] = dep
+    prof_data["comment"] = helpful_comment    
 
     #sanity school check
     page_school = sp.find(class_="NameTitle__Title-dowf0z-1").find('a', href=True).text
@@ -132,14 +135,12 @@ def scrape_prof(url):
     filename = "COSC.json"
     with open(filename, 'a') as outfile:
         json.dump(prof_data, outfile, ensure_ascii=False, indent=4) #{prof: prof_data}
-        #json.dump({'courses': course_scores}, outfile, ensure_ascii=False, indent=4)
 
 if __name__ == "__main__":
-
     #for headless operation
     #Xvfb is required with PyVirtualDisplay
 
-    #clear json file
+    #clear json file before write up
     with open('COSC.json','w'): pass
 
     #initial cosc department url
@@ -149,14 +150,13 @@ if __name__ == "__main__":
     for prof_url in prof_urls:
         scrape_prof(prof_url)
 
-    #write json as array
+    #turn entire json  object as array
     data = ""
     with open('COSC.json','r') as file:
         data = file.read()
     with open('COSC.json','w') as file:
         file.write(f"[{data}]")
 
-    #TODO find url of all professors for section, store url
     #url = "https://www.ratemyprofessors.com/ShowRatings.jsp?tid=1918500&showMyProfs=true"
     #scrape_prof(url)
 
