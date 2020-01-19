@@ -16,6 +16,9 @@
         margin: 0;
         min-width: 250px;
       }
+      #wrapper {
+        min-height: 100%;
+      }
       * {
         box-sizing: border-box;
       }
@@ -29,7 +32,7 @@
         padding: 12px 8px 12px 40px;
         list-style-type: none;
         background: #eee;
-        font-size: 24px;
+        font-size: 20px;
         transition: 0.2s;
 
         -webkit-user-select: none;
@@ -48,30 +51,9 @@
         color: #fff;
         text-decoration: line-through;
       }
-      input {
-        margin: 0;
-        border: none;
-        border-radius: 0;
-        width: 75%;
-        padding: 10px;
-        float: left;
-        font-size: 16px;
-      }
-      .addBtn {
-        padding: 10px;
-        width: 25%;
-        background: #d9d9d9;
-        color: #555;
-        float: left;
-        text-align: center;
-        font-size: 16px;
-        cursor: pointer;
-        transition: 0.3s;
-        border-radius: 0;
-      }
-      .addBtn:hover {
-        background-color: #bbb;
-      }
+  
+     
+   
 
       h1 {
         font-family: sans-serif;
@@ -82,14 +64,14 @@
       }
       ul {
         padding: 0;
-        margin: 10px;
+        
       }
    
       .firstlist {
         font-family: sans-serif;
         
         float: left;
-        width: 55%;
+        width: 35%;
         
        
         list-style-type: none;
@@ -106,7 +88,7 @@
         font-family: sans-serif;
         
         float: right;
-        width: 35%;
+        width: 60%;
         
        
         list-style-type: none;
@@ -119,7 +101,8 @@
     </style>
   </head>
   <body >
-  <div class="weather rain"></div>
+  <div id = "weather">
+  
    <script src="https://cdn.jsdelivr.net/gh/mathusummut/confetti.js/confetti.min.js"></script>
     <h1>Course Professors</h1>
     
@@ -131,6 +114,8 @@
         <li>
         </li>
     </ul>
+    
+    </div>
     <script>
         //references: https://www.w3schools.com/howto/howto_js_todolist.asp
         //https://codepen.io/KryptoniteDove/post/load-json-file-locally-using-pure-javascript
@@ -140,11 +125,11 @@
         var currentCourse;
         var courseScore;
         var sentiment;
-        var totalsent;
+        var totalsent = 0;
         var count = 0;
-        var avgsent;
+        var avgsent = 0;
         window.onload = function(){
-            currentCourse = "COSC123";
+            currentCourse = "COSC221";
             
             
             courseScore = 0;
@@ -164,8 +149,9 @@
                         courseScore = courses[0][currentCourse];
                           count++;
                           totalsent += courseScore;
+                          
 
-                          console.log(courseScore);
+                          console.log(totalsent);
                            //the course score is an int
                            if(courseScore < -50){
                             sentiment = "Would write a review purely to insult them"
@@ -204,15 +190,15 @@
        
                     }}
                     avgsent = totalsent/count;
-                    if(avgsent < 0){
-                    var booSound = new Audio('boosound.wav');
-                    booSound.loop = false;
-                    booSound.play();
+                    console.log(avgsent);
+                    if(avgsent < 500){
+                    console.log("UH OH");
+                      
+                    document.getElementById("weather").setAttribute("class", "weather rain");
+                 
                     }else{
                       confetti.start();
-                      var cheerSound = new Audio('cheersound.wav');
-                    cheerSound.loop = false;
-                    cheerSound.play();
+                     
                     }
          
         
