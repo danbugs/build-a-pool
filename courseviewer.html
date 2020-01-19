@@ -118,8 +118,8 @@
     </style>
   </head>
   <body>
-    <h1>BCHACKS 2020</h1>
-    <h2>Course Professors</h2>
+    <h1>Course Professors</h1>
+    
     <div id="myDIV" class="header">
       <input type="text" id="myInput" placeholder="Profs..." />
       <span onClick="init()" class="addBtn">INITIALIZE LOOPS</span>
@@ -140,7 +140,7 @@
         function init(){
             currentCourse = "COSC123";
             
-           // currentCode = currentCourse.replace(/['"]+/g, '');
+         
             courseScore = 0;
             $.getJSON("COSCPROFS.json", function(json){
                 jason = json;
