@@ -126,8 +126,7 @@
         var sentiment;
         var totalsent = 0;
         var count = 0;
-        var avgsent;
-
+        var avgsent = 0;
         window.addEventListener("message", receiveMessage, false);
 
         function receiveMessage(dataPassed){
@@ -140,7 +139,7 @@
                 //filereader implementation from https://stackoverflow.com/questions/7346563/loading-local-json-file
                 //using file reader
 
-                //delete children
+                //parse through each prof array item
                 var div = document.getElementById("profs")
                 while (div.firstChild) {
                   div.removeChild(div.firstChild);
@@ -195,15 +194,14 @@
                         
        
                     }}
+                    //below is the calculation of the average score considering all parsed weights from the json file
                     avgsent = totalsent/count;
                     console.log(avgsent);
-                    if(avgsent < 0){
-                    console.log("UH OH");
+                  
+                    if(avgsent >0){//if the score is positive
+                    
                       
-                    document.getElementById("weather").setAttribute("class", "weather rain");
-                 
-                    }else{
-                      confetti.start();
+                      confetti.start(1000);
                      
                     }
          
